@@ -3,7 +3,7 @@ def add_two_numbers(a, b):
 
 
 def test_small_numbers():
-    assert add_two_numbers(1, 2) == 3, "suma ma być 3"
+    assert add_two_numbers(1, 2) == 30, "suma ma być 3"
 
 
 def test_large_numbers():
