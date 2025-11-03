@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 # open browser
 driver = webdriver.Chrome()
 # time.sleep(1)
+
 # 1. Open page
 driver.get("https://practicetestautomation.com/practice-test-login/")
 # time.sleep(1)
@@ -21,6 +22,7 @@ password_locator.send_keys("Password123")
 # 4. Push Submit button
 submit_button_locator = driver.find_element(By.XPATH, "//button[@class='btn']")
 submit_button_locator.click()
+
 # 5. Verify new page URL contains practicetestautomation.com/logged-in-successfully/
 actual_url = driver.current_url
 assert actual_url == "https://practicetestautomation.com/logged-in-successfully/"
