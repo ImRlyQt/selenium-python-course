@@ -15,6 +15,7 @@ class TestNegativeScenarios:
         username_locator = driver.find_element(By.ID, "username")
         username_locator.send_keys("student")
 
+
         # 3. Type password Password123 into Password field
         # 4. Push Submit button
         # 5. Verify error message is displayed
