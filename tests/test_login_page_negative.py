@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 
 
 class TestNegativeScenarios:
-
+    @pytest.mark.login
     @pytest.mark.negative
     def test_negative_username(self):
         # 1. Open page
@@ -17,6 +17,7 @@ class TestNegativeScenarios:
         # 2. Type username incorrectUser into Username field
         username_locator = driver.find_element(By.ID, "username")
         username_locator.send_keys("incorrectUser")
+        # username_locator.send_keys("student")
 
         # 3. Type password Password123 into Password field
         password_locator = driver.find_element(By.NAME, "password")
@@ -31,4 +32,4 @@ class TestNegativeScenarios:
 
         # 6. Verify error message text is Your username is invalid!
         error_message = error_message_locator.text
-        assert error_message == "Your username is invalid!", "Error message is not expexted"
+        assert error_message == "Your username is invalid!", "Error message is not expected"
