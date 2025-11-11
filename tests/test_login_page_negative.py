@@ -18,9 +18,8 @@ def driver():
 class TestNegativeScenarios:
     @pytest.mark.login
     @pytest.mark.negative
-    def test_negative_username(self):
+    def test_negative_username(self, driver):
         # 1. Open page
-        driver = webdriver.Chrome()
         driver.get("https://practicetestautomation.com/practice-test-login/")
 
         # 2. Type username incorrectUser into Username field
