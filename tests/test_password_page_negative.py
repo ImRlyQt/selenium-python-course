@@ -1,6 +1,6 @@
 # Test case 3: Negative password test
-import time
 
+import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -10,7 +10,7 @@ class TestNegativeScenarios:
     @pytest.mark.login
     @pytest.mark.negative
     @pytest.mark.negative_password
-    def test_negative_username(self):
+    def test_negative_password(self):
         # 1. Open page
         driver = webdriver.Chrome()
         driver.get("https://practicetestautomation.com/practice-test-login/")
@@ -26,7 +26,7 @@ class TestNegativeScenarios:
         # 4. Push Submit button
         submit_button_locator = driver.find_element(By.XPATH, "//button[@class='btn']")
         submit_button_locator.click()
-
+        time.sleep(1)
         # 5. Verify error message is displayed
         error_message_locator = driver.find_element(By.ID, "error")
         assert error_message_locator.is_displayed(), "Error is not displayed but should be"
