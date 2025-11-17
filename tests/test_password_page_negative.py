@@ -7,12 +7,11 @@ from selenium.webdriver.common.by import By
 
 
 class TestNegativeScenarios:
-    @pytest.mark.login
-    @pytest.mark.negative
-    @pytest.mark.negative_password
-    def test_negative_password(self):
+    # @pytest.mark.login
+    # @pytest.mark.negative
+    # @pytest.mark.negative_password
+    def test_negative_password(self, driver):
         # 1. Open page
-        driver = webdriver.Chrome()
         driver.get("https://practicetestautomation.com/practice-test-login/")
 
         # 2. Type username student into Username field
