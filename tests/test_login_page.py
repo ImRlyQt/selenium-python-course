@@ -9,11 +9,7 @@ class TestPositiveScenarios:
 
     @pytest.mark.login
     @pytest.mark.positive
-    def test_positive_login(self):
-        # open browser
-        driver = webdriver.Chrome()
-        # time.sleep(1)
-
+    def test_positive_login(self, driver):
         # 1. Open page
         driver.get("https://practicetestautomation.com/practice-test-login/")
         # time.sleep(1)
