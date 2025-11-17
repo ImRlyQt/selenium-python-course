@@ -8,7 +8,6 @@ from selenium.webdriver.common.by import By
 class TestNegativeScenarios:
     @pytest.mark.login
     @pytest.mark.negative
-    @pytest.mark.negative_username
     @pytest.mark.parametrize("username, password, expected_error_message",
                              [("incorrectUser", "Password123", "Your username is invalid!"),
                               ("student", "incorrectPassword", "Your password is invalid!")])
