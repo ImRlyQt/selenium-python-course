@@ -2,9 +2,10 @@ import pytest
 from selenium import webdriver
 
 
-@pytest.fixture()
+@pytest.fixture(params=["chrome", "firefox"])
 def driver(request):
-    browser = request.config.getoption("--browser")
+    #browser = request.config.getoption("--browser")
+    browser = request.param
     print(f"Creating {browser} driver")
     if browser == "chrome":
         my_driver = webdriver.Chrome() #no kurwa odpala chroma cnie
