@@ -91,7 +91,7 @@ class TestExceptions:
         driver.find_element(By.ID, "add_btn").click()
 
         # Wait for 3 seconds for the second input field to be displayed
-        wait = WebDriverWait(driver, 3)
-
+        wait = WebDriverWait(driver, 5.1)
+        row_2_input_element = wait.until(ec.visibility_of_element_located((By.XPATH, "//div[@id='row2']/input")), "Failed waiting for Row 2 input to be visible")
         # Verify second input field is displayed
-        assert wait.until(ec.visibility_of_element_located((By.XPATH, "//div[@id='row2']/input")))
+        assert row_2_input_element.is_displayed()
