@@ -53,16 +53,19 @@ class TestExceptions:
         driver.get("https://practicetestautomation.com/practice-test-exceptions/")
 
         # 2. Clear input field
-        driver.find_element(By.XPATH, "//div[@id='row1']/button[@name='Edit']").click()
-        driver.find_element(By.XPATH, "//div[@id='row1']/input").clear()
+        row_1_edit_button = driver.find_element(By.ID, "edit_btn")
+        row_1_edit_button.click()
+        row_1_input_element = driver.find_element(By.XPATH, "//div[@id='row1']/input")
+        wait = WebDriverWait(driver, 10)
+        wait.until(ec.element_to_be_clickable(row_1_input_element))
+        row_1_input_element.clear()
 
         # 3. Type text into the input field
-        row_1_input_element = driver.find_element(By.XPATH, "//div[@id='row1']/input")
         row_1_input_element.send_keys("żurek")
-        driver.find_element(By.XPATH, "//div[@id='row1']/button[@name='Save']").click()
+        row_1_save_button = driver.find_element(By.ID, "save_btn")
+        row_1_save_button.click()
 
         # 4. Verify text changed
-        wait = WebDriverWait(driver, 10)
         confirmation_element = wait.until(ec.visibility_of_element_located((By.ID, "confirmation")))
         confirmation_message = confirmation_element.text
         assert confirmation_message == "Row 1 was saved", "Confirmation message is not expected"
