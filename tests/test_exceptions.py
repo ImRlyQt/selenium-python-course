@@ -74,12 +74,9 @@ class TestExceptions:
         # Open page
         driver.get("https://practicetestautomation.com/practice-test-exceptions/")
 
-        # Find the instructions text element
-        instructions_text_element = driver.find_element(By.ID, "instructions")
-
         # Push add button
         driver.find_element(By.ID, "add_btn").click()
 
         # Verify instruction text element is no longer displayed
         wait = WebDriverWait(driver,10)
-        assert wait.until(ec.invisibility_of_element_located(instructions_text_element)), "Instruction text element should not be displayed"
+        assert wait.until(ec.invisibility_of_element_located((By.ID, "instructions"))), "Instruction text element should not be displayed"
