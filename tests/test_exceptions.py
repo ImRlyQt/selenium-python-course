@@ -1,9 +1,3 @@
-# Test case 1: NoSuchElementException
-# Open page
-# Click Add button
-# Verify Row 2 input field is displayed
-# Row 2 doesn’t appear immediately. This test will fail with org.openqa.selenium.NoSuchElementException without proper wait
-
 import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -25,3 +19,13 @@ class TestExceptions:
         wait = WebDriverWait(driver, 10)
         row_2_input_element = wait.until(ec.visibility_of_element_located((By.XPATH, "//div[@id='row2']/input")))
         assert row_2_input_element.is_displayed(), "Row 2 input should be displayed but is not"
+
+        # 4. Type text into the second input field
+        row_2_text_locator = driver.find_element(By.XPATH, "//div[@id='rows']/div[3]/div[@class='row']/input[@type='text']")
+        row_2_text_locator.send_keys("text")
+        # 5. Push Save button using locator By.name(“Save”)
+        save_button_locator = driver.find_element(By.XPATH, "//div[@id='rows']/div[3]/div[@class='row']/button[@id='save_btn']")
+        save_button_locator.click()
+        # 6. Verify text saved
+        confirmation_element = driver.find_element(By.ID, "confirmation")
+        assert confirmation_element.is_displayed(), "confirmation should be displayed but is not"
