@@ -6,6 +6,8 @@
 
 import pytest
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
 
 
 class TestExceptions:
@@ -18,6 +20,9 @@ class TestExceptions:
         # 2. Click Add button
         add_button_locator = driver.find_element(By.ID, "add_btn")
         add_button_locator.click()
+
+        wait = WebDriverWait(driver, 10)
+        wait.until(ec.visibility_of_element_located((By.XPATH, "//div[@id='row2']/input")))
 
         # 3. Verify Row 2 input field is displayed
         row_2_input_locator = driver.find_element(By.XPATH, "//div[@id='row2']/input")
