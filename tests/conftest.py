@@ -2,10 +2,11 @@ import pytest
 from selenium import webdriver
 
 
-@pytest.fixture(params=["chrome", "firefox"])
+#@pytest.fixture(params=["chrome", "firefox"])
+@pytest.fixture()
 def driver(request):
-    #browser = request.config.getoption("--browser")
-    browser = request.param
+    browser = request.config.getoption("--browser")
+    #browser = request.param
     print(f"Creating {browser} driver")
     if browser == "chrome":
         my_driver = webdriver.Chrome() #no kurwa odpala chroma cnie
@@ -13,6 +14,7 @@ def driver(request):
         my_driver = webdriver.Firefox()  # no kurwa odpala firefox co nie
     else:
         raise TypeError(f"Expected 'chrome' or 'firefox', but got {browser}")
+    my_driver.implicitly_wait(10)
     yield my_driver
     print(f"\nClosing {browser} driver")
     my_driver.quit()
