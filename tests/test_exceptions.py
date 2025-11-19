@@ -38,7 +38,7 @@ class TestExceptions:
         row_2_input_element.send_keys("Żurek")
 
         # 5. Push Save button using locator By.name(“Save”)
-        driver.find_element(By.XPATH, "//div[@id='rows']/div[3]/div[@class='row']/button[@id='save_btn']").click()
+        driver.find_element(By.XPATH, "//div[@id='row2']/button[@name='Save']").click()
 
         # 6. Verify text saved
         confirmation_element = driver.find_element(By.ID, "confirmation")
