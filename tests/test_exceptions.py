@@ -8,10 +8,10 @@ import pytest
 from selenium.webdriver.common.by import By
 
 
-class TestPositiveScenarios:
+class TestExceptions:
 
     @pytest.mark.exeptions
-    def test_positive_login(self, driver):
+    def test_no_suc_element_exception(self, driver):
         # 1. Open page
         driver.get("https://practicetestautomation.com/practice-test-exceptions/")
 
@@ -20,6 +20,6 @@ class TestPositiveScenarios:
         add_button_locator.click()
 
         # 3. Verify Row 2 input field is displayed
-        row_2_text_locator = driver.find_element(By.ID, "row2")
-        assert row_2_text_locator.is_displayed()
+        row_2_input_locator = driver.find_element(By.XPATH, "//div[@id='row2']/input")
+        assert row_2_input_locator.is_displayed(), "Row 2 input should be displayed but is not"
 
