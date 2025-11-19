@@ -9,9 +9,9 @@ def driver(request):
     #browser = request.param
     print(f"Creating {browser} driver")
     if browser == "chrome":
-        my_driver = webdriver.Chrome() #no kurwa odpala chroma cnie
+        my_driver = webdriver.Chrome()
     elif browser == "firefox":
-        my_driver = webdriver.Firefox()  # no kurwa odpala firefox co nie
+        my_driver = webdriver.Firefox()
     else:
         raise TypeError(f"Expected 'chrome' or 'firefox', but got {browser}")
     my_driver.implicitly_wait(10)
