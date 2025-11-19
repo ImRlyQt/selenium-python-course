@@ -10,8 +10,8 @@ from selenium.webdriver.common.by import By
 
 class TestExceptions:
 
-    @pytest.mark.exeptions
-    def test_no_suc_element_exception(self, driver):
+    @pytest.mark.exceptions
+    def test_no_such_element_exception(self, driver):
         # 1. Open page
         driver.get("https://practicetestautomation.com/practice-test-exceptions/")
 
