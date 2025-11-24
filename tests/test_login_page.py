@@ -1,36 +1,22 @@
 import pytest
 from selenium.webdriver.common.by import By
 
+from Practice.page_objects.logged_in_successfully import LoggedInSuccessfullyPage
+from Practice.page_objects.login_page import LoginPage
+
 
 class TestPositiveScenarios:
+
 
     @pytest.mark.login
     @pytest.mark.positive
     def test_positive_login(self, driver):
-        # 1. Open page
-        driver.get("https://practicetestautomation.com/practice-test-login/")
+        login_page = LoginPage(driver)
+        login_page.open()
+        login_page.execute_login("student","Password123")
+        login_in_page = LoggedInSuccessfullyPage(driver)
+        assert login_in_page.expected_url == login_in_page.current_url, "Actual URL is not the same as expected"
+        assert login_in_page.header == "Logged In Successfully", "Header is not expected"
+        assert login_in_page.is_logout_button_displayed(), "Logout button should be visible"
 
-        # 2. Type username student into Username field
-        username_locator = driver.find_element(By.ID, "username")
-        username_locator.send_keys("student")
 
-        # 3. Type password Password123 into Password field
-        password_locator = driver.find_element(By.NAME, "password")
-        password_locator.send_keys("Password123")
-
-        # 4. Push Submit button
-        submit_button_locator = driver.find_element(By.XPATH, "//button[@class='btn']")
-        submit_button_locator.click()
-
-        # 5. Verify new page URL contains practicetestautomation.com/logged-in-successfully/
-        actual_url = driver.current_url
-        assert actual_url == "https://practicetestautomation.com/logged-in-successfully/"
-
-        # 6. Verify new page contains expected text ('Congratulations' or 'successfully logged in')
-        logged_in_text_locator = driver.find_element(By.TAG_NAME, "h1")
-        logged_in_text = logged_in_text_locator.text
-        assert logged_in_text == "Logged In Successfully"
-
-        # 7. Verify button Log out is displayed on the new page
-        logout_button_locator = driver.find_element(By.LINK_TEXT, "Log out")
-        assert logout_button_locator.is_displayed()

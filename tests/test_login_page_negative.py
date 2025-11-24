@@ -30,7 +30,7 @@ class TestNegativeScenarios:
         time.sleep(1)
         # 5. Verify error message is displayed
         error_message_locator = driver.find_element(By.ID, "error")
-        assert error_message_locator.is_displayed(), "Error is not displayed but should be"
+        assert error_message_locator._is_displayed(), "Error is not displayed but should be"
 
         # 6. Verify error message text is Your username is invalid!
         error_message = error_message_locator.text
