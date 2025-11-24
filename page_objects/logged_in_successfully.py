@@ -11,16 +11,12 @@ class LoggedInSuccessfullyPage:
         self._driver = driver
 
     @property
-    def current_url(self) -> str:
-        return self._driver.current_url
-
-    @property
     def expected_url(self) -> str:
         return self._url
 
+    @property
     def header(self) -> str:
         return self._driver.find_element(self.__header_locator).text
 
     def is_logout_button_displayed(self) -> bool:
         return self._driver.find_element(self.__logout_button_locator).is_displayed()
-
