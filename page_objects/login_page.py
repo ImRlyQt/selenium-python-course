@@ -22,4 +22,5 @@ class LoginPage(BasePage):
         super()._type(self.__password_field, password)
         super()._click(self.__submit_button)
 
-    def get_error_message(self)- > str:
+    def get_error_message(self) -> str:
+        return super()._get_text(self.__error_message)
