@@ -23,4 +23,4 @@ class LoginPage(BasePage):
         super()._click(self.__submit_button)
 
     def get_error_message(self) -> str:
-        return super()._get_text(self.__error_message)
+        return super()._get_text(self.__error_message, time=3)

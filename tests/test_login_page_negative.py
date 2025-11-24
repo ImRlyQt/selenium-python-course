@@ -17,11 +17,4 @@ class TestNegativeScenarios:
         login_page = LoginPage(driver)
         login_page.open()
         login_page.execute_login(username, password)
-
-        # 5. Verify error message is displayed
-        error_message_locator = driver.find_element(By.ID, "error")
-        assert error_message_locator.is_displayed(), "Error is not displayed but should be"
-
-        # 6. Verify error message text is Your username is invalid!
-        error_message = error_message_locator.text
-        assert error_message == expected_error_message, "Error message is not expected"
+        assert login_page.get_error_message() == expected_error_message, "Error message is not expected"
