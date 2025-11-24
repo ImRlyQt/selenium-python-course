@@ -1,8 +1,4 @@
-# Test case 2: Negative username test
-
-
 import pytest
-from selenium.webdriver.common.by import By
 
 from Practice.page_objects.login_page import LoginPage
 
