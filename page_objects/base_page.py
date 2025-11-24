@@ -30,6 +30,9 @@ class BasePage:
 
     def is_displayed(self, locator: tuple) -> bool:
         try:
-            return  self._find(locator).is_displayed()
+            return self._find(locator).is_displayed()
         except NoSuchElementException:
             return False
+
+    def open_url(self, url: str):
+        self._driver.get(self.__url)
