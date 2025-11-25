@@ -10,37 +10,23 @@ from Practice.page_objects.exceptions_page import ExceptionsPage
 
 
 class TestExceptions:
-    @pytest.mark.debug
     @pytest.mark.exceptions
     def test_no_such_element_exception(self, driver):
         exceptions_page = ExceptionsPage(driver)
         exceptions_page._open()
         exceptions_page._add_second_row()
-        assert exceptions_page.is_row_2_displayed(), "Row 2 input should be displayed but is not"
+        assert exceptions_page._is_row_2_displayed(), "Row 2 input should be displayed but is not"
 
+    @pytest.mark.debug
     @pytest.mark.exceptions
     def test_element_not_interactable_exception(self, driver):
-        # 1. Open page
-        driver.get("https://practicetestautomation.com/practice-test-exceptions/")
+        exceptions_page = ExceptionsPage(driver)
+        exceptions_page._open()
+        exceptions_page._add_second_row()
+        exceptions_page._row_2_input_text("żurek")
+        assert exceptions_page._get_confirmation_message() == "Row 2 was saved", "Confirmation message is not expected"
 
-        # 2. Click Add button
-        add_button_locator = driver.find_element(By.ID, "add_btn")
-        add_button_locator.click()
 
-        # 3. Wait for the second row to load
-        wait = WebDriverWait(driver, 10)
-        row_2_input_element = wait.until(ec.visibility_of_element_located((By.XPATH, "//div[@id='row2']/input")))
-
-        # 4. Type text into the second input field
-        row_2_input_element.send_keys("Żurek")
-
-        # 5. Push Save button using locator By.name(“Save”)
-        driver.find_element(By.XPATH, "//div[@id='row2']/button[@name='Save']").click()
-
-        # 6. Verify text saved
-        confirmation_element = driver.find_element(By.ID, "confirmation")
-        confirmation_message = confirmation_element.text
-        assert confirmation_message == "Row 2 was saved", "Confirmation message is not expected"
 
     @pytest.mark.exceptions
     def test_invalid_element_state_exception(self, driver):

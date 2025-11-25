@@ -24,6 +24,12 @@ class ExceptionsPage(BasePage):
         super()._click(self.__add_button_locator)
         super()._wait_until_element_is_visible(self.__row_2_input_element)
 
-    def is_row_2_displayed(self) -> bool:
+    def _is_row_2_displayed(self) -> bool:
         return super()._is_displayed(self.__row_2_input_element)
 
+    def _row_2_input_text(self, text: str):
+        super()._type(self.__row_2_input_element, text)
+        super()._click(self.__row_2_save_button)
+
+    def _get_confirmation_message(self) ->str:
+        return super()._get_text(self.__confirmation_element, time=3)
