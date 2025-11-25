@@ -13,6 +13,7 @@ class ExceptionsPage(BasePage):
     __row_1_input_element = (By.XPATH, "//div[@id='row1']/input")
     __row_2_input_element = (By.XPATH, "//div[@id='row2']/input")
     __confirmation_element = (By.ID, "confirmation")
+    __instructions_element = (By.ID, "instructions")
 
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
@@ -40,3 +41,7 @@ class ExceptionsPage(BasePage):
 
     def _get_confirmation_message(self) ->str:
         return super()._get_text(self.__confirmation_element, time=3)
+
+    def _are_instructions_displayed(self) -> bool:
+        return super()._is_displayed(self.__instructions_element)
+

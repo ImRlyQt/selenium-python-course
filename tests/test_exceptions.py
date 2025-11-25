@@ -25,7 +25,6 @@ class TestExceptions:
         exceptions_page._row_2_input_text("żurek")
         assert exceptions_page._get_confirmation_message() == "Row 2 was saved", "Confirmation message is not expected"
 
-    @pytest.mark.debug
     @pytest.mark.exceptions
     def test_invalid_element_state_exception(self, driver):
         exceptions_page = ExceptionsPage(driver)
@@ -33,18 +32,13 @@ class TestExceptions:
         exceptions_page._row_1_input_text("żurek")
         assert exceptions_page._get_confirmation_message() == "Row 1 was saved", "Confirmation message is not expected"
 
+    @pytest.mark.debug
     @pytest.mark.exceptions
     def test_stale_element_reference_exception(self, driver):
-        # Open page
-        driver.get("https://practicetestautomation.com/practice-test-exceptions/")
-
-        # Push add button
-        driver.find_element(By.ID, "add_btn").click()
-
-        # Verify instruction text element is no longer displayed
-        wait = WebDriverWait(driver, 10)
-        assert wait.until(ec.invisibility_of_element_located(
-            (By.ID, "instructions"))), "Instruction text element should not be displayed"
+        exceptions_page = ExceptionsPage(driver)
+        exceptions_page._open()
+        exceptions_page._add_second_row()
+        assert not exceptions_page._are_instructions_displayed(), "Instruction text element should not be displayed"
 
     @pytest.mark.exceptions
     def test_timeout_exception(self, driver):
