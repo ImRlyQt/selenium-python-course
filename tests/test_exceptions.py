@@ -17,7 +17,6 @@ class TestExceptions:
         exceptions_page._add_second_row()
         assert exceptions_page._is_row_2_displayed(), "Row 2 input should be displayed but is not"
 
-    @pytest.mark.debug
     @pytest.mark.exceptions
     def test_element_not_interactable_exception(self, driver):
         exceptions_page = ExceptionsPage(driver)
@@ -26,30 +25,13 @@ class TestExceptions:
         exceptions_page._row_2_input_text("żurek")
         assert exceptions_page._get_confirmation_message() == "Row 2 was saved", "Confirmation message is not expected"
 
-
-
+    @pytest.mark.debug
     @pytest.mark.exceptions
     def test_invalid_element_state_exception(self, driver):
-        # 1. Open page
-        driver.get("https://practicetestautomation.com/practice-test-exceptions/")
-
-        # 2. Clear input field
-        row_1_edit_button = driver.find_element(By.ID, "edit_btn")
-        row_1_edit_button.click()
-        row_1_input_element = driver.find_element(By.XPATH, "//div[@id='row1']/input")
-        wait = WebDriverWait(driver, 10)
-        wait.until(ec.element_to_be_clickable(row_1_input_element))
-        row_1_input_element.clear()
-
-        # 3. Type text into the input field
-        row_1_input_element.send_keys("żurek")
-        row_1_save_button = driver.find_element(By.ID, "save_btn")
-        row_1_save_button.click()
-
-        # 4. Verify text changed
-        confirmation_element = wait.until(ec.visibility_of_element_located((By.ID, "confirmation")))
-        confirmation_message = confirmation_element.text
-        assert confirmation_message == "Row 1 was saved", "Confirmation message is not expected"
+        exceptions_page = ExceptionsPage(driver)
+        exceptions_page._open()
+        exceptions_page._row_1_input_text("żurek")
+        assert exceptions_page._get_confirmation_message() == "Row 1 was saved", "Confirmation message is not expected"
 
     @pytest.mark.exceptions
     def test_stale_element_reference_exception(self, driver):

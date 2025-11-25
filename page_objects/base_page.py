@@ -20,6 +20,9 @@ class BasePage:
         self._wait_until_element_is_visible(locator, time)
         self._find(locator).send_keys(text)
 
+    def _clear(self, locator: tuple):
+        self._find(locator).clear()
+
     def _click(self, locator: tuple, time: int = 10):
         self._wait_until_element_is_visible(locator, time)
         self._find(locator).click()

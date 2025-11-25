@@ -31,5 +31,12 @@ class ExceptionsPage(BasePage):
         super()._type(self.__row_2_input_element, text)
         super()._click(self.__row_2_save_button)
 
+    def _row_1_input_text(self, text: str):
+        super()._click(self.__edit_button_locator)
+        super()._clear(self.__row_1_input_element)
+        super()._type(self.__row_1_input_element, text)
+        super()._click(self.__row_1_save_button)
+
+
     def _get_confirmation_message(self) ->str:
         return super()._get_text(self.__confirmation_element, time=3)
